@@ -1,9 +1,11 @@
 import os
+import time
 from werkzeug.contrib.fixers import ProxyFix
 from flask import Flask, redirect, url_for
 from flask_dance.contrib.slack import make_slack_blueprint, slack
 from flask_sslify import SSLify
 from raven.contrib.flask import Sentry
+CHANNEL_NAME = "general"
 
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app)
@@ -26,6 +28,10 @@ def index():
     })
     assert resp.ok, resp.text
     return resp.text
-
+# Connect to slack
+    if sc.rtm_connect():
+        # Send first message
+        sc.rtm_send_message(CHANNEL_NAME, "I'm ALIVE!!!")
+        
 if __name__ == "__main__":
     app.run()
