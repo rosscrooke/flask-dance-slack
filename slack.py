@@ -26,8 +26,6 @@ def index():
         "text": "ping",
         "icon_emoji": ":robot_face:",
     })
-    assert resp.ok, resp.text
-    return resp.text
 
     resp2 = slack.post("chat.postMessage", data={
         "channel": "#general",
@@ -70,8 +68,6 @@ def index():
         }
     ]
     })
-    assert resp2.ok, resp2.text
-    return resp2.text
 
 
 if __name__ == "__main__":
