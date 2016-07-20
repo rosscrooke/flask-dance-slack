@@ -29,9 +29,8 @@ def index():
 
     resp2 = slack.post("chat.postMessage", data={
         "channel": "#general",
-        "text": "ping",
-        "icon_emoji": ":robot_face:",
-        "attachments": [
+            "text": "Choose a game to play",
+            "attachments": [
         {
             "text": "Choose a game to play",
             "fallback": "You are unable to choose a game",
@@ -68,7 +67,9 @@ def index():
         }
     ]
     })
-
+    
+    assert resp.ok, resp.text
+    return resp.text
 
 if __name__ == "__main__":
     app.run()
