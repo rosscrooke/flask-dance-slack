@@ -28,10 +28,51 @@ def index():
     })
     assert resp.ok, resp.text
     return resp.text
-# Connect to slack
-    if sc.rtm_connect():
-        # Send first message
-        sc.rtm_send_message(CHANNEL_NAME, "I'm ALIVE!!!")
-        
+
+    resp2 = slack.post("chat.postMessage", data={
+        "channel": "#general",
+        "text": "ping",
+        "icon_emoji": ":robot_face:",
+        "attachments": [
+        {
+            "text": "Choose a game to play",
+            "fallback": "You are unable to choose a game",
+            "callback_id": "wopr_game",
+            "color": "#3AA3E3",
+            "attachment_type": "default",
+            "actions": [
+                {
+                    "name": "chess",
+                    "text": "Chess",
+                    "type": "button",
+                    "value": "chess"
+                },
+                {
+                    "name": "maze",
+                    "text": "Falken's Maze",
+                    "type": "button",
+                    "value": "maze"
+                },
+                {
+                    "name": "war",
+                    "text": "Thermonuclear War",
+                    "style": "danger",
+                    "type": "button",
+                    "value": "war",
+                    "confirm": {
+                        "title": "Are you sure?",
+                        "text": "Wouldn't you prefer a good game of chess?",
+                        "ok_text": "Yes",
+                        "dismiss_text": "No"
+                    }
+                }
+            ]
+        }
+    ]
+    })
+    assert resp2.ok, resp2.text
+    return resp2.text
+
+
 if __name__ == "__main__":
     app.run()
