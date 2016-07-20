@@ -33,8 +33,8 @@ def index():
         "icon_emoji": ":robot_face:",
     })
     
-    assert resp2.ok, resp2.text
-    return resp2.text
+    assert resp.ok, resp.text
+    return resp.text
 
 if __name__ == "__main__":
     app.run()
