@@ -27,11 +27,6 @@ def index():
         "icon_emoji": ":robot_face:",
     })
 
-    resp2 = slack.post("chat.postMessage", data={
-        "text": "testing",
-        "icon_emoji": ":robot_face:",
-    })
-    
     assert resp.ok, resp.text
     return resp.text
 
