@@ -28,7 +28,6 @@ def index():
     })
 
     resp2 = slack.post("chat.postMessage", data={
-        "channel": "#general",
             "text": "Choose a game to play",
             "attachments": [
         {
