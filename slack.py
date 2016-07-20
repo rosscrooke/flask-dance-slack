@@ -76,8 +76,8 @@ def index():
     ]
 })
     
-    assert resp.ok, resp.text
-    return resp.text
+    assert resp2.ok, resp2.text
+    return resp2.text
 
 if __name__ == "__main__":
     app.run()
